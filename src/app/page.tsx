@@ -7,10 +7,12 @@ import {useEffect} from 'react';
 
 export default function Home() {
   useEffect(() => {
+    console.log('inited:', window.location);
     sendGTMEvent({
       event: 'page_view',
       page_title: 'Step: Property type',
-      page_location: window.location });
+      page_location: window.location
+    });
   }, []);
 
   return (
@@ -27,6 +29,12 @@ export default function Home() {
         <div>
           <button onClick={() => sendGTMEvent({event: 'generate_lead', currency: 'DKK', value: '100'})}>test custom
             event
+          </button>
+          <button onClick={() => sendGTMEvent({
+            event: 'page_view',
+            page_title: 'Step: Property type',
+            page_location: window.location
+          })}>Test Page View
           </button>
         </div>
 
