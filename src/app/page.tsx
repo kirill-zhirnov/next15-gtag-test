@@ -11,7 +11,7 @@ export default function Home() {
     sendGTMEvent({
       event: 'page_view',
       page_title: 'Step: Property type',
-      page_location: window.location
+      page_location: window.location.toString()
     });
   }, []);
 
@@ -33,7 +33,7 @@ export default function Home() {
           <button onClick={() => sendGTMEvent({
             event: 'page_view',
             page_title: 'Step: Property type',
-            page_location: window.location
+            page_location: window.location.toString()
           })}>Test Page View
           </button>
         </div>
