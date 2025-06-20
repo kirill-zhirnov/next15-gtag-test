@@ -1,18 +1,35 @@
+'use client';
+
 import Image from "next/image";
 import styles from "./page.module.css";
+import { sendGTMEvent } from '@next/third-parties/google';
+import {useEffect} from 'react';
 
 export default function Home() {
+  useEffect(() => {
+    sendGTMEvent({
+      event: 'page_view',
+      page_title: 'Step: Property type',
+      page_location: window.location });
+  }, []);
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
         <Image
-          className={styles.logo}
-          src="/next.svg"
+            className={styles.logo}
+            src="/next.svg"
           alt="Next.js logo"
           width={180}
           height={38}
           priority
         />
+        <div>
+          <button onClick={() => sendGTMEvent({event: 'generate_lead', currency: 'DKK', value: '100'})}>test custom
+            event
+          </button>
+        </div>
+
         <ol>
           <li>
             Get started by editing <code>src/app/page.tsx</code>.
