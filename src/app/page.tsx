@@ -34,7 +34,7 @@ export default function Home() {
           <button onClick={() => sendGTMEvent({
             event: 'page_view',
             page_title: 'Step: Property type',
-            page_location: window.location.toString()
+            page_location: `https://${window.location.host}/some-custom-page/`
           })}>
             Test Manual event
           </button>
