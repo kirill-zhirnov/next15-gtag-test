@@ -7,7 +7,8 @@ import {useEffect} from 'react';
 
 export default function Home() {
   useEffect(() => {
-    console.log('inited:', window.location);
+    console.log('trigger event on page load:');
+
     sendGTMEvent({
       event: 'page_view',
       page_title: 'Step: Property type',
@@ -34,7 +35,8 @@ export default function Home() {
             event: 'page_view',
             page_title: 'Step: Property type',
             page_location: window.location.toString()
-          })}>Test Page View
+          })}>
+            Test Manual event
           </button>
         </div>
 
