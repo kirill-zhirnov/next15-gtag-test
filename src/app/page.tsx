@@ -7,7 +7,7 @@ import {useEffect} from 'react';
 
 export default function Home() {
   useEffect(() => {
-    console.log('trigger event on page load:');
+    console.log('new: trigger event on page load:');
 
     window.gtag('event', 'page_view', {
       page_path: '/',
