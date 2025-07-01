@@ -9,12 +9,23 @@ export default function Home() {
   useEffect(() => {
     console.log('trigger event on page load:');
 
-    sendGTMEvent({
-      event: 'page_view',
-      page_title: 'Step: Property type',
-      page_location: window.location.toString()
-    });
+    window.gtag('event', 'page_view', {
+      page_path: '/',
+      page_title: 'Hello World',
+    })
+    // sendGTMEvent({
+    //   event: 'page_view',
+    //   page_title: 'Step: Property type',
+    //   page_location: window.location.toString()
+    // });
   }, []);
+
+  const manualPageView = (page_title: string, page_path: string) => {
+    window.gtag('event', 'page_view', {
+      page_path,
+      page_title
+    })
+  };
 
   return (
     <div className={styles.page}>
@@ -28,14 +39,16 @@ export default function Home() {
           priority
         />
         <div>
+
           <button onClick={() => sendGTMEvent({event: 'generate_lead', currency: 'DKK', value: '100'})}>test custom
             event
           </button>
-          <button onClick={() => sendGTMEvent({
-            event: 'page_view',
-            page_title: 'Step: Property type',
-            page_location: `https://${window.location.host}/some-custom-page/`
-          })}>
+          {/*<button onClick={() => sendGTMEvent({*/}
+          {/*  event: 'page_view',*/}
+          {/*  page_title: 'Step: Property type',*/}
+          {/*  page_location: `https://${window.location.host}/some-custom-page/`*/}
+          {/*})}>*/}
+          <button onClick={() => manualPageView('Step: Property type', '/some-custom-page/')}>
             Test Manual event
           </button>
         </div>
