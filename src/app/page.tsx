@@ -10,11 +10,13 @@ export default function Home() {
   useEffect(() => {
     console.log('new: trigger event on page load:');
 
-    // window.gtag('event', 'gtm.historyChange', {
-    //   page_location: '/some_custom_path/',
-    //   page_title: 'Hello World',
-    //   page_path: '/some_custom_path/',
+    //если добавить send_to - то работает в гугле
+    // window.gtag('event', 'page_view', {
+    //   page_location: 'https://next15-gtag-test.vercel.app/another-page',
+    //   page_title: 'some title',
+    //   send_to: 'G-38W3MZM036'
     // });
+
     //
     // window.gtag('event', 'gtm.historyChange-v2', {
     //   page_location: '/some_custom_path/',
@@ -27,18 +29,20 @@ export default function Home() {
     //   page_title: 'Hello World',
     //   page_path: '/some_custom_path/',
     // });
-    // sendGTMEvent({
-    //   event: 'page_view',
-    //   page_title: 'Step: Property type',
-    //   page_location: window.location.toString()
-    // });
+    sendGTMEvent({
+      event: 'page_view',
+      page_title: 'Fire on Load',
+      page_location: window.location.toString()
+    });
   }, []);
 
   const manualPageView = (page_title: string, page_path: string) => {
-    window.gtag('event', 'page_view', {
-      page_path,
-      page_title
-    })
+    console.log('disabled for now')
+
+    // window.gtag('event', 'page_view', {
+    //   page_path,
+    //   page_title
+    // })
   };
 
   return (
@@ -57,12 +61,12 @@ export default function Home() {
           <button onClick={() => sendGTMEvent({event: 'generate_lead', currency: 'DKK', value: '100'})}>test custom
             event
           </button>
-          {/*<button onClick={() => sendGTMEvent({*/}
-          {/*  event: 'page_view',*/}
-          {/*  page_title: 'Step: Property type',*/}
-          {/*  page_location: `https://${window.location.host}/some-custom-page/`*/}
-          {/*})}>*/}
-          <button onClick={() => manualPageView('Step: Property type', '/some-custom-page/')}>
+          <button onClick={() => sendGTMEvent({
+            event: 'page_view',
+            page_title: 'Step: Property type',
+            page_location: `https://${window.location.host}/some-custom-page/`
+          })}>
+          {/*<button onClick={() => manualPageView('Step: Property type', '/some-custom-page/')}>*/}
             Test Manual event
           </button>
         </div>
