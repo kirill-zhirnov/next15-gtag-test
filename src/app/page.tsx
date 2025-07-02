@@ -4,15 +4,29 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import { sendGTMEvent } from '@next/third-parties/google';
 import {useEffect} from 'react';
+import Link from 'next/link';
 
 export default function Home() {
   useEffect(() => {
     console.log('new: trigger event on page load:');
 
-    window.gtag('event', 'page_view', {
-      page_path: '/',
-      page_title: 'Hello World',
-    })
+    // window.gtag('event', 'gtm.historyChange', {
+    //   page_location: '/some_custom_path/',
+    //   page_title: 'Hello World',
+    //   page_path: '/some_custom_path/',
+    // });
+    //
+    // window.gtag('event', 'gtm.historyChange-v2', {
+    //   page_location: '/some_custom_path/',
+    //   page_title: 'Hello World',
+    //   page_path: '/some_custom_path/',
+    // });
+
+    // window.gtag('page_view', {
+    //   page_location: '/some_custom_path/',
+    //   page_title: 'Hello World',
+    //   page_path: '/some_custom_path/',
+    // });
     // sendGTMEvent({
     //   event: 'page_view',
     //   page_title: 'Step: Property type',
@@ -84,6 +98,9 @@ export default function Home() {
           >
             Read our docs
           </a>
+        </div>
+        <div>
+          <Link href="/sup-page">Go to Sub-Page</Link>
         </div>
       </main>
       <footer className={styles.footer}>
