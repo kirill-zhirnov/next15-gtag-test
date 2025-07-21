@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { GoogleTagManager } from '@next/third-parties/google';
+import Script from 'next/script';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,21 +26,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <GoogleTagManager gtmId={process.env.GTM_ID as unknown as string} dataLayer={{
-          'event': 'gtm.consentInitialization',
-          'gtm.allowlist': ['consent'],
-          'gtm.blocklist': [],
-          'gtm.consentSettings': {
-              ad_storage: "granted",
-              ad_user_data: "granted",
-              ad_personalization: "granted",
-              analytics_storage: "granted",
-              functionality_storage: "granted",
-              personalization_storage: "granted",
-              security_storage: "granted",
-              wait_for_update: 500
-          },
-      }} />
+    <Script
+        id="init-gtag"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('consent', 'granted', {
+              'ad_storage': 'granted',
+              'ad_user_data': 'granted',
+              'ad_personalization': 'granted',
+              'analytics_storage': 'granted'
+            });
+          `,
+        }}
+    />
+      <GoogleTagManager gtmId={process.env.GTM_ID as unknown as string} />
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
       </body>
