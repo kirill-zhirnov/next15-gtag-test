@@ -4,17 +4,46 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import { sendGTMEvent } from '@next/third-parties/google';
 import {useEffect} from 'react';
+import Link from 'next/link';
 
 export default function Home() {
   useEffect(() => {
-    console.log('trigger event on page load:');
+    console.log('new: trigger event on page load:');
 
+    //если добавить send_to - то работает в гугле
+    // window.gtag('event', 'page_view', {
+    //   page_location: 'https://next15-gtag-test.vercel.app/another-page',
+    //   page_title: 'some title',
+    //   send_to: 'G-38W3MZM036'
+    // });
+
+    //
+    // window.gtag('event', 'gtm.historyChange-v2', {
+    //   page_location: '/some_custom_path/',
+    //   page_title: 'Hello World',
+    //   page_path: '/some_custom_path/',
+    // });
+
+    // window.gtag('page_view', {
+    //   page_location: '/some_custom_path/',
+    //   page_title: 'Hello World',
+    //   page_path: '/some_custom_path/',
+    // });
     sendGTMEvent({
       event: 'page_view',
-      page_title: 'Step: Property type',
+      page_title: 'Fire on Load',
       page_location: window.location.toString()
     });
   }, []);
+
+  const manualPageView = (page_title: string, page_path: string) => {
+    console.log('disabled for now')
+
+    // window.gtag('event', 'page_view', {
+    //   page_path,
+    //   page_title
+    // })
+  };
 
   return (
     <div className={styles.page}>
@@ -28,6 +57,7 @@ export default function Home() {
           priority
         />
         <div>
+
           <button onClick={() => sendGTMEvent({event: 'generate_lead', currency: 'DKK', value: '100'})}>test custom
             event
           </button>
@@ -36,6 +66,7 @@ export default function Home() {
             page_title: 'Step: Property type',
             page_location: `https://${window.location.host}/some-custom-page/`
           })}>
+          {/*<button onClick={() => manualPageView('Step: Property type', '/some-custom-page/')}>*/}
             Test Manual event
           </button>
         </div>
@@ -71,6 +102,9 @@ export default function Home() {
           >
             Read our docs
           </a>
+        </div>
+        <div>
+          <Link href="/sup-page">Go to Sub-Page</Link>
         </div>
       </main>
       <footer className={styles.footer}>

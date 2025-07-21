@@ -25,19 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <GoogleTagManager gtmId={process.env.GTM_ID as unknown as string} dataLayer={
-          {
-              consent: {
-                  '1': 'default',
-                  '2': {
-                    'ad_storage': 'denied',
-                    'ad_user_data': 'denied',
-                    'ad_personalization': 'denied',
-                    'analytics_storage': 'denied'
-                    }
-              }
-          }
-      }/>
+      <GoogleTagManager gtmId={process.env.GTM_ID as unknown as string} />
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
       </body>
