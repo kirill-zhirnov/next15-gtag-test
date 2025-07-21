@@ -28,9 +28,10 @@ export default function RootLayout({
     <html lang="en">
     <Script
         id="init-gtag"
-        strategy="afterInteractive"
+        strategy="beforeInteractive"
         dangerouslySetInnerHTML={{
             __html: `
+            console.log('this is a test');
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('consent', 'granted', {
