@@ -26,8 +26,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <GoogleTagManager gtmId={process.env.GTM_ID as unknown as string} dataLayer={{
-          'event': 'default_consent',
-          'default': {
+          'event': 'gtm.consentInitialization',
+          'gtm.allowlist': ['consent'],
+          'gtm.blocklist': [],
+          'gtm.consentSettings': {
               ad_storage: "granted",
               ad_user_data: "granted",
               ad_personalization: "granted",
