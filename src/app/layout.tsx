@@ -30,19 +30,35 @@ export default function RootLayout({
         id="init-gtag"
         strategy="beforeInteractive"
         dangerouslySetInnerHTML={{
-            __html: `
-            console.log('this is a test');
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('consent', 'granted', {
-              'ad_storage': 'granted',
-              'ad_user_data': 'granted',
-              'ad_personalization': 'granted',
-              'analytics_storage': 'granted'
-            });
+          __html: `
+              window.dataLayer = window.dataLayer || [];
+              window.dataLayer.push({
+                event: "default_consent",
+                defaultConsent: {
+                  ad_storage: "granted",
+                  analytics_storage: "granted"
+                }
+              });
           `,
         }}
     />
+    {/*<Script*/}
+    {/*    id="init-gtag"*/}
+    {/*    strategy="beforeInteractive"*/}
+    {/*    dangerouslySetInnerHTML={{*/}
+    {/*        __html: `*/}
+    {/*        console.log('this is a test');*/}
+    {/*        window.dataLayer = window.dataLayer || [];*/}
+    {/*        function gtag(){dataLayer.push(arguments);}*/}
+    {/*        gtag('consent', 'granted', {*/}
+    {/*          'ad_storage': 'granted',*/}
+    {/*          'ad_user_data': 'granted',*/}
+    {/*          'ad_personalization': 'granted',*/}
+    {/*          'analytics_storage': 'granted'*/}
+    {/*        });*/}
+    {/*      `,*/}
+    {/*    }}*/}
+    {/*/>*/}
       <GoogleTagManager gtmId={process.env.GTM_ID as unknown as string} />
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
