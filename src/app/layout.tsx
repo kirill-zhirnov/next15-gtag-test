@@ -27,34 +27,33 @@ export default function RootLayout({
   return (
     <html lang="en">
     <Script
-        id="init-gtag"
+        id="gtag-consent-init"
         strategy="beforeInteractive"
         dangerouslySetInnerHTML={{
           __html: `
-          console.log('beforeInteractive - new!');
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
               
-            gtag('consent', 'default', {
-              'ad_storage': 'granted',
-              'analytics_storage': 'granted',
-              'ad_user_data': 'granted',
-              'ad_personalization': 'granted'
-              'functionality_storage': 'granted'
-              'personalization_storage': 'granted'
-              'security_storage': 'granted'
-            });
-            gtag('consent', 'update', {
-              'ad_storage': 'granted',
-              'analytics_storage': 'granted',
-              'ad_user_data': 'granted',
-              'ad_personalization': 'granted'
-              'functionality_storage': 'granted'
-              'personalization_storage': 'granted'
-              'security_storage': 'granted'
-            });
-            
-            console.log('done!');
+gtag('consent', 'default', {
+    'ad_storage': 'granted',
+    'analytics_storage': 'granted',
+    'ad_user_data': 'granted',
+    'ad_personalization': 'granted',
+    'functionality_storage': 'granted',
+    'personalization_storage': 'granted',
+    'security_storage': 'granted'
+});
+gtag('consent', 'update', {
+    'ad_storage': 'granted',
+    'analytics_storage': 'granted',
+    'ad_user_data': 'granted',
+    'ad_personalization': 'granted',
+    'functionality_storage': 'granted',
+    'personalization_storage': 'granted',
+    'security_storage': 'granted'
+});
+
+console.log('the consent is granted');      
           `,
         }}
     />
