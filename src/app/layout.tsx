@@ -33,7 +33,7 @@ export default function RootLayout({
           __html: `
               window.dataLayer = window.dataLayer || [];
               window.dataLayer.push({
-                event: "defaultConsent",
+                event: "consent",
                 defaultConsent: {
                   ad_storage: "granted",
                   analytics_storage: "granted"
