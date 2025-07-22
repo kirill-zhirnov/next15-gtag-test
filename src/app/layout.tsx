@@ -33,11 +33,13 @@ export default function RootLayout({
           __html: `
               window.dataLayer = window.dataLayer || [];
               window.dataLayer.push({
-                '0': "consent",
-                '1': "default",
-                '2': {
-                  ad_storage: "granted",
-                  analytics_storage: "granted"
+                0: "consent",
+                1: "default",
+                2: {
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'analytics_storage': 'denied',
                 }
               });
           `,
