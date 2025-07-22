@@ -31,6 +31,7 @@ export default function RootLayout({
         strategy="beforeInteractive"
         dangerouslySetInnerHTML={{
           __html: `
+          console.log('beforeInteractive');
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               
@@ -40,6 +41,8 @@ export default function RootLayout({
               'ad_personalization': 'granted',
               'analytics_storage': 'granted'
             });
+            
+            console.log('done!');
           `,
         }}
     />
