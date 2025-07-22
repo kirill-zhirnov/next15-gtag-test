@@ -31,38 +31,33 @@ export default function RootLayout({
         strategy="beforeInteractive"
         dangerouslySetInnerHTML={{
           __html: `
-          console.log('beforeInteractive');
+          console.log('beforeInteractive - new!');
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               
             gtag('consent', 'default', {
               'ad_storage': 'granted',
+              'analytics_storage': 'granted',
               'ad_user_data': 'granted',
-              'ad_personalization': 'granted',
-              'analytics_storage': 'granted'
+              'ad_personalization': 'granted'
+              'functionality_storage': 'granted'
+              'personalization_storage': 'granted'
+              'security_storage': 'granted'
+            });
+            gtag('consent', 'update', {
+              'ad_storage': 'granted',
+              'analytics_storage': 'granted',
+              'ad_user_data': 'granted',
+              'ad_personalization': 'granted'
+              'functionality_storage': 'granted'
+              'personalization_storage': 'granted'
+              'security_storage': 'granted'
             });
             
             console.log('done!');
           `,
         }}
     />
-    {/*<Script*/}
-    {/*    id="init-gtag"*/}
-    {/*    strategy="beforeInteractive"*/}
-    {/*    dangerouslySetInnerHTML={{*/}
-    {/*        __html: `*/}
-    {/*        console.log('this is a test');*/}
-    {/*        window.dataLayer = window.dataLayer || [];*/}
-    {/*        function gtag(){dataLayer.push(arguments);}*/}
-    {/*        gtag('consent', 'granted', {*/}
-    {/*          'ad_storage': 'granted',*/}
-    {/*          'ad_user_data': 'granted',*/}
-    {/*          'ad_personalization': 'granted',*/}
-    {/*          'analytics_storage': 'granted'*/}
-    {/*        });*/}
-    {/*      `,*/}
-    {/*    }}*/}
-    {/*/>*/}
       <GoogleTagManager gtmId={process.env.GTM_ID as unknown as string} />
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
