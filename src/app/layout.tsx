@@ -32,16 +32,14 @@ export default function RootLayout({
         dangerouslySetInnerHTML={{
           __html: `
               window.dataLayer = window.dataLayer || [];
-              window.dataLayer.push({
-                0: "consent",
-                1: "default",
-                2: {
-  'ad_storage': 'denied',
-  'ad_user_data': 'denied',
-  'ad_personalization': 'denied',
-  'analytics_storage': 'denied',
-                }
-              });
+              function gtag(){dataLayer.push(arguments);}
+              
+            gtag('consent', 'default',
+              'ad_storage': 'granted',
+              'ad_user_data': 'granted',
+              'ad_personalization': 'granted',
+              'analytics_storage': 'granted'
+            });
           `,
         }}
     />
